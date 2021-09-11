@@ -2,8 +2,8 @@
 
 ## Principal Component Analysis (PCA)
 
-- Used to convert d dimensions to some smaller amount
--
+[Explanation](https://github.com/CodingPenguin1/Data-Analysis/blob/main/dimensionality-reduction/pca.pdf)
+
 
 
 ## Sources
