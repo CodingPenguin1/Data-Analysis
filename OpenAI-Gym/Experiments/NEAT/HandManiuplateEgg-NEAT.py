@@ -53,10 +53,11 @@ if __name__ == '__main__':
     training_environment = neat.ParallelEvaluator(cpu_count(), train_agent)
     winner = population.run(training_environment.evaluate, GENERATIONS)
 
-    # Visualize the winner
-    train_agent(winner, config, True)
-
-    nodeNames = {-1: 'Cart Position', -2: 'Cart Velocity', -3: 'Pole Angle', -4: 'Pole Angular Velocity', 0: 'right', 1: 'left'}
-    visualize.draw_net(config, winner, True, node_names=nodeNames)
+    # nodeNames = {-1: 'Cart Position', -2: 'Cart Velocity', -3: 'Pole Angle', -4: 'Pole Angular Velocity', 0: 'right', 1: 'left'}
+    # visualize.draw_net(config, winner, True, node_names=nodeNames)
+    visualize.draw_net(config, winner, True)
     visualize.plot_stats(stats, ylog=False, view=True)
     visualize.plot_species(stats, view=True)
+
+    # Visualize the winner
+    # train_agent(winner, config, True)

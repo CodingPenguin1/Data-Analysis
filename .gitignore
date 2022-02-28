@@ -1,4 +1,4 @@
-__pycache__/
-datasets/
-supervised/.images/
-supervised/LDA-dimensionality.avi
+*__pycache__/
+*datasets/
+*supervised/.images/
+*supervised/LDA-dimensionality.avi
