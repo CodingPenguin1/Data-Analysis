@@ -1,6 +1,8 @@
 *__pycache__/
+*.ipynb_checkpoints
 *datasets/
 *supervised/.images/
 *supervised/LDA-dimensionality.avi
 *.sif
-*/Training/*
+*Training/*
+*.zip
