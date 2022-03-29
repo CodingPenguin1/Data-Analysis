@@ -1,0 +1,49 @@
+bootstrap:docker
+From:debian:bullseye
+
+%environment
+    PATH=/opt/miniconda/bin:$PATH
+    # MUJOCO_PY_MUJOCO_PATH=/opt/mujoco
+    # LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/mujoco/mujoco210/bin
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin
+
+%post
+    apt update
+    apt install -y wget
+
+    export CMAKE_PREFIX_PATH=/opt/miniconda
+    export PATH=/opt/miniconda/bin/:$PATH
+    export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so
+    # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/mujoco/mujoco210/bin
+
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/condaInstall.sh
+
+    # Some systems have issues with the most recent miniconda installer
+    #   If this fails for some reason, pull down an old, known working
+    #   version to fall back to
+    # if ! bash ~/condaInstall.sh -b -p /opt/miniconda/; then
+    bash ~/condaInstall.sh -b -p /opt/miniconda/
+    # wget https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O ~/condaInstall.sh
+    # rm -rf /opt/miniconda
+    # bash ~/condaInstall.sh -b -p /opt/miniconda/
+    # fi
+
+    conda update -y -n base conda
+    /opt/miniconda/bin/pip install neat-python mujoco-py graphviz matplotlib
+    conda install -c conda-forge -y numpy gym-all
+    apt install -y graphviz
+
+    # wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
+    # tar -xvf mujoco210-linux-x86_64.tar.gz
+    # mv mujoco210 /opt/mujoco
+
+    # TODO: Find a better way to do this
+    chmod -R 0777 /opt/miniconda/
+
+# %test
+#     which conda
+#     which pip
+#     which pip3
+
+%runscript
+    python HandManiuplateEgg-NEAT.py
